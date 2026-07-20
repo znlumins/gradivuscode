@@ -10,6 +10,7 @@ export interface Dictionary {
     titleHighlight: string;
     titleAfter: string;
     subtitle: string;
+    subtitleMobile: string;
     ctaPrice: string;
     ctaConsult: string;
     statProject: string;
@@ -168,6 +169,7 @@ export const DICTIONARIES: Record<string, Dictionary> = {
       titleHighlight: 'Naik Kelas',
       titleAfter: ' dengan Website Estetis & Super Cepat',
       subtitle: 'Paket lengkap Landing Page + Branding untuk UMKM Indonesia. Desain premium, performa ringan, harga mulai Rp 1,5 juta. Tanpa biaya bulanan.',
+      subtitleMobile: 'Desain premium, performa super cepat, harga mulai Rp 1,5 juta. Tanpa biaya bulanan.',
       ctaPrice: 'Lihat Paket Harga',
       ctaConsult: 'Konsultasi Gratis',
       statProject: 'Proyek Selesai',
@@ -396,6 +398,7 @@ export const DICTIONARIES: Record<string, Dictionary> = {
       titleHighlight: 'Aesthetic',
       titleAfter: ' & Super Fast Websites',
       subtitle: 'Complete Landing Page + Branding package for Indonesian SMEs. Premium design, lightweight performance, starting from IDR 1.5 million. No monthly fees.',
+      subtitleMobile: 'Premium design, fast performance, starting from IDR 1.5 million. No monthly fees.',
       ctaPrice: 'View Packages',
       ctaConsult: 'Free Consultation',
       statProject: 'Projects Completed',

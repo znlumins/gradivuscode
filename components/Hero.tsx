@@ -23,8 +23,11 @@ export default function Hero() {
         </h1>
         
         {/* Subtitle description */}
-        <p className="text-base md:text-lg text-text-secondary mb-8 md:mb-10 max-w-2xl leading-relaxed">
+        <p className="hidden md:block text-base md:text-lg text-text-secondary mb-10 max-w-2xl leading-relaxed">
           {t.hero.subtitle}
+        </p>
+        <p className="block md:hidden text-base text-text-secondary mb-8 max-w-xl leading-relaxed">
+          {t.hero.subtitleMobile}
         </p>
         
         {/* Action Row buttons */}
