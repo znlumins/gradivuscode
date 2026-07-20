@@ -28,7 +28,7 @@ export default function Hero() {
         </p>
         
         {/* Action Row buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-xs sm:max-w-none sm:w-auto">
+        <div className="flex flex-col md:flex-row gap-4 justify-center w-full max-w-xs md:max-w-none md:w-auto mx-auto">
           <a href="#services" className="btn-primary text-base px-8 py-3.5 text-center">
             {t.hero.ctaPrice}
           </a>
