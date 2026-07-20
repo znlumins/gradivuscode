@@ -14,5 +14,5 @@
 ## Review & Verification Summary
 - **Project Documentation Update**: Wrote and integrated a comprehensive `README.md` project documentation detailing features scope, tech stack setup instructions, project file architecture, bilingual localization logic (Context API and dictionaries), mobile navigation drawer containment fix, cost calculator mobile sticky bar, custom select dropdown design, and credentials setup.
 - **Git Push Complete**: Pushed the updated documentation successfully to the GitHub repository on the `main` branch.
-- **Vercel Production Deployment**: Successfully authenticated the Vercel CLI, linked `znlumins-projects/bisnis` and pushed production outputs. The application is live at [bisnis-pink.vercel.app](https://bisnis-pink.vercel.app) (Production Alias).
+- **Vercel Production Deployment**: Successfully authenticated the Vercel CLI, linked `znlumins-projects/bisnis` and pushed production outputs. The application is live at [gradivuscode.vercel.app](https://gradivuscode.vercel.app) (Production Domain).
 - **Next.js Production Build**: Executed cloud build compilation successfully, confirming correct page pre-rendering.
