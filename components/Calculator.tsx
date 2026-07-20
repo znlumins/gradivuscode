@@ -234,7 +234,7 @@ export default function Calculator() {
           </div>
 
           {/* Column 3: Sticky Result Card */}
-          <div className="lg:sticky lg:top-28">
+          <div className="hidden lg:block lg:sticky lg:top-28">
             <div className="bg-bg-card border border-border rounded-2xl p-8 text-center shadow-lg shadow-black/40">
               <h3 className="text-text-secondary text-sm font-semibold uppercase tracking-wider mb-2">{t.calculator.estimateLabel}</h3>
               <div className="text-4xl font-heading font-medium text-accent-purple mb-6">
