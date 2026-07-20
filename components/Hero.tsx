@@ -7,7 +7,7 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section id="hero" className="relative pt-32 pb-20 md:min-h-[100dvh] md:flex md:items-center md:justify-center md:pt-24 md:pb-16 overflow-hidden bg-bg-primary">
+    <section id="hero" className="relative pt-40 pb-20 md:min-h-[100dvh] md:flex md:items-center md:justify-center md:pt-24 md:pb-16 overflow-hidden bg-bg-primary">
       
       {/* Grid Pattern Background for B2B tech feel */}
       <div className="absolute inset-0 bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
