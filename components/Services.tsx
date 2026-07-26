@@ -7,15 +7,12 @@ interface ServiceFeature {
   included: boolean;
 }
 
-interface ServiceFeature {
-  text: string;
-  included: boolean;
-}
-
 interface ServicePackage {
   id: string;
   name: string;
   price: number;
+  monthlyPrice: number;
+  emailContinuationPrice: number;
   desc: string;
   features: ServiceFeature[];
   badge: string | null;
@@ -28,7 +25,9 @@ export default function Services() {
     {
       id: 'startup',
       name: 'Startup',
-      price: 3499000,
+      price: 3594000,
+      monthlyPrice: 599000,
+      emailContinuationPrice: 149000,
       desc: t.services.packages.startup.desc,
       features: [
         { text: t.services.packages.startup.features[0], included: true },
@@ -45,7 +44,9 @@ export default function Services() {
     {
       id: 'professional',
       name: 'Professional',
-      price: 6999000,
+      price: 7194000,
+      monthlyPrice: 1199000,
+      emailContinuationPrice: 249000,
       desc: t.services.packages.professional.desc,
       features: [
         { text: t.services.packages.professional.features[0], included: true },
@@ -62,7 +63,9 @@ export default function Services() {
     {
       id: 'enterprise',
       name: 'Enterprise',
-      price: 14999000,
+      price: 15594000,
+      monthlyPrice: 2599000,
+      emailContinuationPrice: 449000,
       desc: t.services.packages.enterprise.desc,
       features: [
         { text: t.services.packages.enterprise.features[0], included: true },
@@ -99,10 +102,22 @@ export default function Services() {
             const rawFormattedPrice = lang === 'en'
               ? pkg.price.toLocaleString('en-US')
               : pkg.price.toLocaleString('id-ID');
+            const rawFormattedMonthly = lang === 'en'
+              ? pkg.monthlyPrice.toLocaleString('en-US')
+              : pkg.monthlyPrice.toLocaleString('id-ID');
+            const rawFormattedEmailContinuation = lang === 'en'
+              ? pkg.emailContinuationPrice.toLocaleString('en-US')
+              : pkg.emailContinuationPrice.toLocaleString('id-ID');
+            const currencyPrefix = lang === 'en' ? 'IDR' : 'Rp';
+            const emailContinuationText = t.services.emailContinuationNote.replace(
+              '{price}',
+              `${currencyPrefix} ${rawFormattedEmailContinuation}`
+            );
 
             // Format WhatsApp Message
             const waMessage = t.services.waTemplate
               .replace('{pkgName}', pkg.name)
+              .replace('{pkgMonthly}', rawFormattedMonthly)
               .replace('{pkgPrice}', rawFormattedPrice);
             const waUrl = `https://wa.me/6281358939283?text=${encodeURIComponent(waMessage)}`;
 
@@ -124,10 +139,20 @@ export default function Services() {
                 {/* Card Top */}
                 <div>
                   <h3 className="text-2xl font-heading font-medium mb-2">{pkg.name}</h3>
-                  <div className="text-3xl font-medium font-heading text-accent-teal mb-2">
-                    {lang === 'en' ? 'IDR' : 'Rp'} {rawFormattedPrice}
+                  <div className="text-3xl font-medium font-heading text-accent-teal mb-1">
+                    {currencyPrefix} {rawFormattedMonthly}
+                    <span className="text-sm font-normal text-text-secondary">/{lang === 'en' ? 'month' : 'bulan'}</span>
                   </div>
-                  <p className="text-sm text-text-secondary leading-relaxed mb-8">{pkg.desc}</p>
+                  <div className="text-xs text-text-secondary mb-1">
+                    {t.services.installmentLabel} &middot; {currencyPrefix} {rawFormattedPrice} total
+                  </div>
+                  <div className="text-[10px] text-text-muted mb-4">
+                    {t.services.minContractNote}
+                  </div>
+                  <p className="text-sm text-text-secondary leading-relaxed mb-4">{pkg.desc}</p>
+                  <p className="text-[11px] text-text-muted leading-relaxed mb-8 border-t border-border pt-3">
+                    {emailContinuationText}
+                  </p>
 
                   {/* Feature Checklist */}
                   <ul className="space-y-4 mb-8">

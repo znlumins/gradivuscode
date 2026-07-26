@@ -15,7 +15,7 @@ export const metadata = {
     default: 'Gradivus Code — Jasa Pembuatan Landing Page & Branding UMKM',
     template: '%s | Gradivus Code'
   },
-  description: 'Gradivus Code menyediakan jasa pembuatan landing page estetis dan super cepat untuk UMKM. Paket lengkap termasuk branding, mulai Rp 1,5 juta. Hosting gratis!',
+  description: 'Gradivus Code menyediakan jasa pembuatan landing page estetis dan super cepat untuk UMKM. Paket lengkap termasuk branding, kontrak mulai Rp 599.000/bulan. Hosting website gratis selamanya!',
   keywords: ['jasa landing page', 'branding UMKM', 'website murah', 'desain logo', 'Gradivus Code', 'jasa website UMKM'],
   authors: [{ name: 'Gradivus Code' }],
   creator: 'Gradivus Code',
@@ -28,7 +28,7 @@ export const metadata = {
     locale: 'id_ID',
     url: 'https://gradivuscode.com',
     title: 'Gradivus Code — Landing Page Premium untuk UMKM',
-    description: 'Paket lengkap website + branding untuk UMKM mulai Rp 1,5 juta. Desain premium, performa ringan, hosting gratis.',
+    description: 'Paket lengkap website + branding untuk UMKM, kontrak mulai Rp 599.000/bulan. Desain premium, performa ringan, hosting website gratis selamanya.',
     siteName: 'Gradivus Code',
     images: [
       {
@@ -42,7 +42,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Gradivus Code — Landing Page Premium untuk UMKM',
-    description: 'Paket lengkap website + branding untuk UMKM mulai Rp 1,5 juta.',
+    description: 'Paket lengkap website + branding untuk UMKM, kontrak mulai Rp 599.000/bulan.',
     images: ['/images/og-image.jpg'],
   },
 };

@@ -92,7 +92,7 @@ gradivus-code/
   ```js
   export const metadata = {
     title: 'Gradivus Code — Jasa Pembuatan Landing Page & Branding UMKM',
-    description: 'Paket lengkap website dan branding mulai Rp 1,5 juta...',
+    description: 'Paket lengkap website dan branding, kontrak mulai Rp 599.000/bulan...',
     openGraph: {
       title: 'Gradivus Code — Landing Page Premium untuk UMKM',
       images: ['/images/og-image.jpg'],

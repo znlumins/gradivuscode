@@ -30,6 +30,9 @@ export interface Dictionary {
     subtitle: string;
     badgePopular: string;
     ctaOrder: string;
+    installmentLabel: string;
+    minContractNote: string;
+    emailContinuationNote: string;
     packages: {
       startup: {
         desc: string;
@@ -168,8 +171,8 @@ export const DICTIONARIES: Record<string, Dictionary> = {
       titleBefore: 'Bikin Usahamu ',
       titleHighlight: 'Naik Kelas',
       titleAfter: ' dengan Website Estetis & Super Cepat',
-      subtitle: 'Paket lengkap Landing Page + Branding untuk UMKM Indonesia. Desain premium, performa ringan, harga mulai Rp 1,5 juta. Tanpa biaya bulanan.',
-      subtitleMobile: 'Desain premium, performa super cepat, harga mulai Rp 1,5 juta. Tanpa biaya bulanan.',
+      subtitle: 'Paket lengkap Landing Page + Branding untuk UMKM Indonesia. Desain premium, performa ringan, kontrak mulai Rp 599.000/bulan · 6 bulan.',
+      subtitleMobile: 'Desain premium, performa super cepat, kontrak mulai Rp 599.000/bulan.',
       ctaPrice: 'Lihat Paket Harga',
       ctaConsult: 'Konsultasi Gratis',
       statProject: 'Proyek Selesai',
@@ -186,9 +189,12 @@ export const DICTIONARIES: Record<string, Dictionary> = {
     },
     services: {
       heading: 'Layanan & Harga',
-      subtitle: 'Pilih paket yang sesuai dengan kebutuhan dan skala bisnis Anda saat ini. Semua paket include hosting gratis.',
+      subtitle: 'Pilih paket yang sesuai dengan kebutuhan dan skala bisnis Anda saat ini. Semua paket include hosting website gratis selamanya.',
       badgePopular: 'Populer',
       ctaOrder: 'Pesan Paket',
+      installmentLabel: 'Kontrak 6 Bulan',
+      minContractNote: '* Kontrak 6 bulan',
+      emailContinuationNote: 'Email hosting gratis di tahun pertama. Lanjutan opsional mulai {price}/bulan setelahnya.',
       packages: {
         startup: {
           desc: 'Untuk bisnis baru/UMKM skala awal yang membutuhkan kehadiran online profesional cepat.',
@@ -230,7 +236,7 @@ export const DICTIONARIES: Record<string, Dictionary> = {
           ],
         },
       },
-      waTemplate: 'Halo Gradivus Code, saya tertarik memesan paket *{pkgName}* (Rp {pkgPrice}). Mohon info kelanjutannya.',
+      waTemplate: 'Halo Gradivus Code, saya tertarik memesan paket *{pkgName}* (kontrak Rp {pkgMonthly}/bulan x 6, total Rp {pkgPrice}). Mohon info kelanjutannya.',
     },
     calculator: {
       heading: 'Kalkulator Biaya',
@@ -274,7 +280,11 @@ export const DICTIONARIES: Record<string, Dictionary> = {
         },
         {
           question: 'Apakah ada biaya bulanan yang harus dibayar?',
-          answer: 'Tidak ada! Kami men-deploy website di server cloud serverless Vercel secara gratis. Anda hanya perlu membayar sewa domain tahunan (mulai Rp 120.000/tahun).',
+          answer: 'Harga paket dengan kontrak 6 bulan sampai lunas — setelah itu tidak ada tagihan wajib lagi (bukan langganan seumur hidup). Hosting website-nya sendiri gratis selamanya di server cloud serverless Vercel. Anda hanya perlu membayar sewa domain tahunan (mulai Rp 120.000/tahun) langsung ke registrar.',
+        },
+        {
+          question: 'Apakah email hosting-nya gratis selamanya?',
+          answer: 'Email hosting termasuk gratis di tahun pertama. Setelah itu, Anda bisa lanjut berlangganan email hosting melalui kami secara opsional (mulai Rp 149.000/bulan untuk paket Startup, minimal kontrak 6 bulan), atau kelola sendiri pakai provider email lain dengan domain Anda — tanpa paksaan.',
         },
         {
           question: 'Apakah saya bisa mengedit isi website sendiri?',
@@ -282,7 +292,11 @@ export const DICTIONARIES: Record<string, Dictionary> = {
         },
         {
           question: 'Bagaimana alur pengerjaan dan pembayarannya?',
-          answer: 'Alurnya: Konsultasi gratis → Pembayaran DP 50% → Proses Desain & Coding → Review & Revisi → Pelunasan 50% → Website Live & Serah Terima.',
+          answer: 'Alurnya: Konsultasi gratis → DP 30-50% dari total paket → Proses Desain & Coding → Review & Revisi → sisa tagihan dengan kontrak 6 bulan → Website Live & Serah Terima penuh setelah lunas.',
+        },
+        {
+          question: 'Apa maksud "minimal kontrak 6 bulan" di harga paket?',
+          answer: 'Itu berlaku untuk kontrak harga paket, bukan langganan rutin. Begitu Anda memilih skema kontrak, Anda berkomitmen menyelesaikan seluruh 6 bulan pembayaran sampai lunas (tidak bisa berhenti di tengah jalan) — setelah itu tidak ada tagihan lagi. Ini terpisah dari "minimal kontrak 6 bulan" pada lanjutan email hosting opsional (mulai tahun kedua), yang hanya berlaku jika Anda memilih lanjut berlangganan email lewat kami.',
         },
         {
           question: 'Apakah website ini responsif dan cepat diakses dari HP?',
@@ -319,9 +333,9 @@ export const DICTIONARIES: Record<string, Dictionary> = {
       errorPackage: 'Silakan pilih paket',
       optionUndecided: 'Belum Tahu / Kustom',
       packages: {
-        startup: 'Startup (Rp 3.499.000)',
-        professional: 'Professional (Rp 6.999.000)',
-        enterprise: 'Enterprise (Rp 14.999.000)',
+        startup: 'Startup (mulai Rp 599.000/bulan)',
+        professional: 'Professional (mulai Rp 1.199.000/bulan)',
+        enterprise: 'Enterprise (mulai Rp 2.599.000/bulan)',
       },
       waTemplate: 'Halo Gradivus Code!\n\nSaya *{name}* dari *{business}*.\nSaya tertarik memesan paket: *{pkg}*.\n{notes}\nMohon informasi lebih lanjut. Terima kasih!',
     },
@@ -397,8 +411,8 @@ export const DICTIONARIES: Record<string, Dictionary> = {
       titleBefore: 'Scale Up Your Business with ',
       titleHighlight: 'Aesthetic',
       titleAfter: ' & Super Fast Websites',
-      subtitle: 'Complete Landing Page + Branding package for Indonesian SMEs. Premium design, lightweight performance, starting from IDR 1.5 million. No monthly fees.',
-      subtitleMobile: 'Premium design, fast performance, starting from IDR 1.5 million. No monthly fees.',
+      subtitle: 'Complete Landing Page + Branding package for Indonesian SMEs. Premium design, lightweight performance, 6-month contract from IDR 599,000/month.',
+      subtitleMobile: 'Premium design, fast performance, 6-month contract from IDR 599,000/month.',
       ctaPrice: 'View Packages',
       ctaConsult: 'Free Consultation',
       statProject: 'Projects Completed',
@@ -415,9 +429,12 @@ export const DICTIONARIES: Record<string, Dictionary> = {
     },
     services: {
       heading: 'Services & Pricing',
-      subtitle: 'Choose the package that fits your business needs and scale. All packages include free hosting.',
+      subtitle: 'Choose the package that fits your business needs and scale. All packages include free website hosting forever.',
       badgePopular: 'Popular',
       ctaOrder: 'Order Package',
+      installmentLabel: '6-Month Contract',
+      minContractNote: '* Minimum 6-month contract',
+      emailContinuationNote: 'Email hosting free for the first year. Optional continuation from {price}/month after that.',
       packages: {
         startup: {
           desc: 'For new businesses/early-stage SMEs needing a fast, professional online presence.',
@@ -459,7 +476,7 @@ export const DICTIONARIES: Record<string, Dictionary> = {
           ],
         },
       },
-      waTemplate: 'Hello Gradivus Code, I am interested in ordering the *{pkgName}* package (IDR {pkgPrice}). Please let me know the next steps.',
+      waTemplate: 'Hello Gradivus Code, I am interested in ordering the *{pkgName}* package (6-month contract, IDR {pkgMonthly}/month, total IDR {pkgPrice}). Please let me know the next steps.',
     },
     calculator: {
       heading: 'Cost Calculator',
@@ -503,7 +520,11 @@ export const DICTIONARIES: Record<string, Dictionary> = {
         },
         {
           question: 'Are there any monthly fees?',
-          answer: 'No! We deploy websites on Vercel\'s serverless cloud for free. You only need to pay for annual domain renewal (starting from IDR 120,000/year).',
+          answer: 'Package prices use a 6-month contract plan — after that, there\'s no more required billing (this is not a lifetime subscription). Website hosting itself stays free forever on Vercel\'s serverless cloud. You only need to pay for annual domain renewal (starting from IDR 120,000/year) directly to the registrar.',
+        },
+        {
+          question: 'Is email hosting free forever?',
+          answer: 'Email hosting is free for the first year. After that, you can optionally continue email hosting through us (starting from IDR 149,000/month for the Startup package, minimum 6-month contract), or manage it yourself with another email provider using your own domain — no obligation.',
         },
         {
           question: 'Can I edit the website content myself?',
@@ -511,7 +532,11 @@ export const DICTIONARIES: Record<string, Dictionary> = {
         },
         {
           question: 'What is the workflow and payment process?',
-          answer: 'The flow: Free consultation → 50% down payment → Design & Coding → Review & Revision → 50% final payment → Website Live & Handover.',
+          answer: 'The flow: Free consultation → 30-50% down payment of the total package → Design & Coding → Review & Revision → remaining balance paid over a 6-month contract → Website goes live & full handover once paid off.',
+        },
+        {
+          question: 'What does "minimum 6-month contract" mean on the package price?',
+          answer: 'That refers to the package\'s contract plan, not a recurring subscription. Once you choose the contract option, you commit to completing all 6 monthly payments until it\'s paid off (it can\'t be stopped partway) — after that there\'s no more billing. This is separate from the "minimum 6-month contract" on the optional email hosting continuation (starting year two), which only applies if you choose to continue email hosting through us.',
         },
         {
           question: 'Is the website responsive and fast on mobile?',
@@ -548,9 +573,9 @@ export const DICTIONARIES: Record<string, Dictionary> = {
       errorPackage: 'Please select a package',
       optionUndecided: 'Undecided / Custom',
       packages: {
-        startup: 'Startup (IDR 3,499,000)',
-        professional: 'Professional (IDR 6,999,000)',
-        enterprise: 'Enterprise (IDR 14,999,000)',
+        startup: 'Startup (from IDR 599,000/month)',
+        professional: 'Professional (from IDR 1,199,000/month)',
+        enterprise: 'Enterprise (from IDR 2,599,000/month)',
       },
       waTemplate: 'Hello Gradivus Code!\n\nI am *{name}* from *{business}*.\nI am interested in ordering package: *{pkg}*.\n{notes}\nPlease provide more information. Thank you!',
     },

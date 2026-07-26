@@ -19,7 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata = {
   title: 'Gradivus Code — Jasa Pembuatan Landing Page & Branding UMKM',
-  description: 'Gradivus Code menyediakan jasa pembuatan landing page estetis dan super cepat untuk UMKM. Paket lengkap termasuk branding, mulai Rp 1,5 juta.',
+  description: 'Gradivus Code menyediakan jasa pembuatan landing page estetis dan super cepat untuk UMKM. Paket lengkap termasuk branding, kontrak mulai Rp 599.000/bulan.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
