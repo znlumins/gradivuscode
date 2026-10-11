@@ -2,20 +2,25 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/lib/LanguageContext';
 
 export default function Navbar() {
   const { lang, changeLanguage, t } = useLanguage();
+  const pathname = usePathname();
+  const isHome = pathname === '/';
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('#hero');
+  const [activeSection, setActiveSection] = useState(isHome ? '#hero' : pathname);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
 
   const NAV_ITEMS = [
-    { label: t.nav.services, href: '#services' },
-    { label: t.nav.calculator, href: '#calculator' },
-    { label: t.nav.faq, href: '#faq' },
-    { label: t.nav.contact, href: '#contact' },
+    { label: t.nav.services, href: isHome ? '#services' : '/#services', isRoute: false, hash: '#services' },
+    { label: t.nav.portfolio, href: '/portfolio', isRoute: true, hash: '/portfolio' },
+    { label: t.nav.calculator, href: isHome ? '#calculator' : '/#calculator', isRoute: false, hash: '#calculator' },
+    { label: t.nav.faq, href: isHome ? '#faq' : '/#faq', isRoute: false, hash: '#faq' },
+    { label: t.nav.contact, href: isHome ? '#contact' : '/#contact', isRoute: false, hash: '#contact' },
   ];
 
   // Jank-free Scroll Sentinel Observer (no window scroll listeners to prevent lagging)
@@ -36,8 +41,13 @@ export default function Navbar() {
     };
   }, []);
 
-  // Handle Active Link Highlight (Intersection Observer)
+  // Handle Active Link Highlight (Intersection Observer on home, pathname on other pages)
   useEffect(() => {
+    if (!isHome) {
+      setActiveSection(pathname);
+      return;
+    }
+
     const sections = document.querySelectorAll('section[id]');
     const observerOptions = {
       root: null,
@@ -54,7 +64,7 @@ export default function Navbar() {
 
     sections.forEach((section) => observer.observe(section));
     return () => sections.forEach((section) => observer.unobserve(section));
-  }, []);
+  }, [isHome, pathname]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -69,19 +79,21 @@ export default function Navbar() {
   }, [isOpen]);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
     setIsOpen(false);
 
-    const target = document.querySelector(href);
-    if (!target) return;
+    if (isHome && href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (!target) return;
 
-    const navbarHeight = 80;
-    const targetPosition = (target as HTMLElement).offsetTop - navbarHeight;
+      const navbarHeight = 80;
+      const targetPosition = (target as HTMLElement).offsetTop - navbarHeight;
 
-    window.scrollTo({
-      top: targetPosition,
-      behavior: 'smooth',
-    });
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth',
+      });
+    }
   };
 
   return (
@@ -97,35 +109,71 @@ export default function Navbar() {
         <div className="w-full flex items-center justify-between">
 
           {/* Logo */}
-          <a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')} className="relative z-[110] flex items-center">
-            {/* Using a bright logo or visual since it is now sitting on black glass */}
-            <Image
-              src="/gradiuscode.svg"
-              alt="Gradivus Code"
-              width={100}
-              height={26}
-              priority
-              className="brightness-125"
-            />
-          </a>
+          {isHome ? (
+            <a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')} className="relative z-[110] flex items-center">
+              <Image
+                src="/gradiuscode.svg"
+                alt="Gradivus Code"
+                width={100}
+                height={26}
+                priority
+                className="brightness-125"
+              />
+            </a>
+          ) : (
+            <Link href="/" onClick={() => setIsOpen(false)} className="relative z-[110] flex items-center">
+              <Image
+                src="/gradiuscode.svg"
+                alt="Gradivus Code"
+                width={100}
+                height={26}
+                priority
+                className="brightness-125"
+              />
+            </Link>
+          )}
 
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex gap-8 items-center" aria-label="Navigasi desktop">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleLinkClick(e, item.href)}
-                className={`text-[11px] font-bold uppercase tracking-wider transition-colors hover:text-white relative py-2 ${
-                  activeSection === item.href ? 'text-accent-purple' : 'text-zinc-100'
-                }`}
-              >
-                {item.label}
-                {activeSection === item.href && (
-                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-accent-purple rounded-full animate-fade-in" />
-                )}
-              </a>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const isActive = item.isRoute
+                ? pathname === item.href
+                : isHome && activeSection === item.hash;
+
+              if (item.isRoute) {
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`text-[11px] font-bold uppercase tracking-wider transition-colors hover:text-white relative py-2 ${
+                      isActive ? 'text-accent-purple' : 'text-zinc-100'
+                    }`}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-0 w-full h-[2px] bg-accent-purple rounded-full animate-fade-in" />
+                    )}
+                  </Link>
+                );
+              }
+
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleLinkClick(e, item.href)}
+                  className={`text-[11px] font-bold uppercase tracking-wider transition-colors hover:text-white relative py-2 ${
+                    isActive ? 'text-accent-purple' : 'text-zinc-100'
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-accent-purple rounded-full animate-fade-in" />
+                  )}
+                </a>
+              );
+            })}
           </nav>
 
           {/* Action Row: Switch Lang + CTA */}
@@ -180,18 +228,39 @@ export default function Navbar() {
       <div className={`fixed inset-y-0 right-0 w-[260px] bg-[#0f0f13]/95 backdrop-blur-2xl border-l border-zinc-800 p-8 pt-24 flex flex-col gap-6 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-[105] md:hidden ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        {NAV_ITEMS.map((item) => (
-          <a
-            key={item.href}
-            href={item.href}
-            onClick={(e) => handleLinkClick(e, item.href)}
-            className={`text-lg font-medium transition-colors ${
-              activeSection === item.href ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
-            }`}
-          >
-            {item.label}
-          </a>
-        ))}
+        {NAV_ITEMS.map((item) => {
+          const isActive = item.isRoute
+            ? pathname === item.href
+            : isHome && activeSection === item.hash;
+
+          if (item.isRoute) {
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className={`text-lg font-medium transition-colors ${
+                  isActive ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          }
+
+          return (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={(e) => handleLinkClick(e, item.href)}
+              className={`text-lg font-medium transition-colors ${
+                isActive ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              {item.label}
+            </a>
+          );
+        })}
 
         {/* Mobile Lang switcher */}
         <div className="flex items-center bg-black/50 border border-zinc-800 rounded-full p-1 gap-1 w-fit mx-auto mt-2">

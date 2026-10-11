@@ -3,6 +3,7 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
+import PortfolioTeaser from '@/components/PortfolioTeaser';
 import Calculator from '@/components/Calculator';
 import FAQ from '@/components/FAQ';
 import ContactForm from '@/components/ContactForm';
@@ -19,6 +20,7 @@ export default function Home() {
       <main>
         <Hero />
         <Services />
+        <PortfolioTeaser />
         <Calculator />
         <FAQ />
         <ContactForm />

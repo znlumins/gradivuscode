@@ -1,29 +1,36 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Phone, Mail } from 'lucide-react';
 import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 
-const QUICK_LINKS = [
-  { labelKey: 'services' as const, href: '#services' },
-  { labelKey: 'calculator' as const, href: '#calculator' },
-  { labelKey: 'faq' as const, href: '#faq' },
-  { labelKey: 'contact' as const, href: '#contact' },
-];
-
 export default function Footer() {
   const { t } = useLanguage();
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+
+  const QUICK_LINKS = [
+    { labelKey: 'services' as const, href: isHome ? '#services' : '/#services', isRoute: false },
+    { labelKey: 'portfolio' as const, href: '/portfolio', isRoute: true },
+    { labelKey: 'calculator' as const, href: isHome ? '#calculator' : '/#calculator', isRoute: false },
+    { labelKey: 'faq' as const, href: isHome ? '#faq' : '/#faq', isRoute: false },
+    { labelKey: 'contact' as const, href: isHome ? '#contact' : '/#contact', isRoute: false },
+  ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (!target) return;
-    const navbarHeight = 80;
-    window.scrollTo({
-      top: (target as HTMLElement).offsetTop - navbarHeight,
-      behavior: 'smooth',
-    });
+    if (isHome && href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (!target) return;
+      const navbarHeight = 80;
+      window.scrollTo({
+        top: (target as HTMLElement).offsetTop - navbarHeight,
+        behavior: 'smooth',
+      });
+    }
   };
 
   return (
@@ -34,14 +41,29 @@ export default function Footer() {
 
           {/* Column 1: Brand Info */}
           <div className="space-y-4">
-            <Image
-              src="/gradiuscode.svg"
-              alt="Gradivus Code"
-              width={120}
-              height={31}
-              loading="lazy"
-              className="brightness-0"
-            />
+            {isHome ? (
+              <a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')}>
+                <Image
+                  src="/gradiuscode.svg"
+                  alt="Gradivus Code"
+                  width={120}
+                  height={31}
+                  loading="lazy"
+                  className="brightness-0"
+                />
+              </a>
+            ) : (
+              <Link href="/">
+                <Image
+                  src="/gradiuscode.svg"
+                  alt="Gradivus Code"
+                  width={120}
+                  height={31}
+                  loading="lazy"
+                  className="brightness-0"
+                />
+              </Link>
+            )}
             <p className="text-sm text-text-secondary max-w-xs leading-relaxed">
               {t.footer.brandDesc}
             </p>
@@ -51,16 +73,30 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h4 className="text-base font-medium font-heading text-text-primary">{t.footer.quickLinks}</h4>
             <nav className="flex flex-col gap-2.5">
-              {QUICK_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className="text-sm text-text-secondary hover:text-accent-teal transition-colors w-fit"
-                >
-                  {t.nav[link.labelKey]}
-                </a>
-              ))}
+              {QUICK_LINKS.map((link) => {
+                if (link.isRoute) {
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="text-sm text-text-secondary hover:text-accent-teal transition-colors w-fit"
+                    >
+                      {t.nav[link.labelKey]}
+                    </Link>
+                  );
+                }
+
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className="text-sm text-text-secondary hover:text-accent-teal transition-colors w-fit"
+                  >
+                    {t.nav[link.labelKey]}
+                  </a>
+                );
+              })}
             </nav>
           </div>
 

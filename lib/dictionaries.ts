@@ -1,4 +1,4 @@
-// lib/dictionaries.ts
+export type Language = 'id' | 'en';
 
 export interface Dictionary {
   general: {
@@ -20,6 +20,7 @@ export interface Dictionary {
   };
   nav: {
     services: string;
+    portfolio: string;
     calculator: string;
     faq: string;
     contact: string;
@@ -30,24 +31,34 @@ export interface Dictionary {
     subtitle: string;
     badgePopular: string;
     ctaOrder: string;
-    installmentLabel: string;
-    minContractNote: string;
-    emailContinuationNote: string;
     packages: {
-      startup: {
+      starter: {
+        name: string;
         desc: string;
         features: string[];
       };
-      professional: {
+      pro: {
+        name: string;
         desc: string;
         features: string[];
       };
       enterprise: {
+        name: string;
         desc: string;
         features: string[];
       };
     };
     waTemplate: string;
+  };
+  portfolio: {
+    heading: string;
+    subtitle: string;
+    filterAll: string;
+    filterWebsite: string;
+    filterBranding: string;
+    emptyText: string;
+    viewDemo: string;
+    closeModal: string;
   };
   calculator: {
     heading: string;
@@ -91,8 +102,8 @@ export interface Dictionary {
     errorPackage: string;
     optionUndecided: string;
     packages: {
-      startup: string;
-      professional: string;
+      starter: string;
+      pro: string;
       enterprise: string;
     };
     waTemplate: string;
@@ -161,110 +172,120 @@ export interface Dictionary {
   };
 }
 
-export const DICTIONARIES: Record<string, Dictionary> = {
+export const dictionaries: Record<Language, Dictionary> = {
   id: {
     general: {
       skipLink: 'Langsung ke konten utama',
       ariaNav: 'Navigasi desktop',
     },
     hero: {
-      titleBefore: 'Bikin Usahamu ',
-      titleHighlight: 'Naik Kelas',
-      titleAfter: ' dengan Website Estetis & Super Cepat',
-      subtitle: 'Paket lengkap Landing Page + Branding untuk UMKM Indonesia. Desain premium, performa ringan, kontrak mulai Rp 599.000/bulan · 6 bulan.',
-      subtitleMobile: 'Desain premium, performa super cepat, kontrak mulai Rp 599.000/bulan.',
+      titleBefore: 'Jasa Pembuatan Website ',
+      titleHighlight: 'Go Global',
+      titleAfter: ' untuk Bisnis Anda',
+      subtitle: 'Tingkatkan kepercayaan bisnis Anda di mata luar negeri & gaet pasar internasional dengan website estetis dan super cepat.',
+      subtitleMobile: 'Tingkatkan kepercayaan bisnis Anda & gaet pasar internasional.',
       ctaPrice: 'Lihat Paket Harga',
       ctaConsult: 'Konsultasi Gratis',
       statProject: 'Proyek Selesai',
       statSatisfaction: 'Klien Puas',
       statSpeed: 'Skor PageSpeed',
-      waTemplate: 'Halo Gradivus Code, saya tertarik konsultasi pembuatan website B2B perusahaan',
+      waTemplate: 'Halo Gradivus Code, saya tertarik konsultasi jasa pembuatan website Go Global.',
     },
     nav: {
       services: 'Layanan',
+      portfolio: 'Portofolio',
       calculator: 'Harga',
       faq: 'FAQ',
       contact: 'Kontak',
       cta: 'Konsultasi Gratis',
     },
     services: {
-      heading: 'Layanan & Harga',
-      subtitle: 'Pilih paket yang sesuai dengan kebutuhan dan skala bisnis Anda saat ini. Semua paket include hosting website gratis selamanya.',
-      badgePopular: 'Populer',
-      ctaOrder: 'Pesan Paket',
-      installmentLabel: 'Kontrak 6 Bulan',
-      minContractNote: '* Kontrak 6 bulan',
-      emailContinuationNote: 'Email hosting gratis di tahun pertama. Lanjutan opsional mulai {price}/bulan setelahnya.',
+      heading: 'Layanan & Paket Harga',
+      subtitle: 'Tingkatkan kepercayaan bisnis Anda di mata luar negeri & gaet pasar internasional.',
+      badgePopular: 'Rekomendasi',
+      ctaOrder: 'Pilih Paket',
       packages: {
-        startup: {
-          desc: 'Untuk bisnis baru/UMKM skala awal yang membutuhkan kehadiran online profesional cepat.',
+        starter: {
+          name: 'Starter',
+          desc: 'Untuk usaha rintisan yang ingin kehadiran online profesional dan terpercaya.',
           features: [
-            '1 Halaman Landing Page (Desain Bersih)',
-            'Performa Kecepatan LCP < 1.2s',
-            'Integrasi HubSpot/WhatsApp',
-            'Setup SEO Standar',
-            'Email Hosting (2 Slot)',
-            'Jaminan Uptime SLA',
-            'Database Kustom & Panel Admin',
-            'Prioritas Pemeliharaan 24/7',
+            'Free domain .com + hosting 1 Tahun',
+            'Hingga 5 halaman (Home, About, Service, Contact, Gallery/Catalog)',
+            'Desain Premium',
+            'SEO On Page Basic',
+            'Responsif Mobile + Tablet',
+            'Garansi Revisi 3x',
+            'Support Maintenance 1 Bulan',
           ],
         },
-        professional: {
-          desc: 'Paket ideal untuk perusahaan berkembang yang memerlukan konversi tinggi & integrasi data.',
+        pro: {
+          name: 'Pro',
+          desc: 'Untuk bisnis berkembang yang membutuhkan konversi penjualan dan eksposur maksimal.',
           features: [
-            '5-8 Halaman (Next.js Multi-page)',
-            'Performa Kecepatan LCP < 0.8s',
-            'Integrasi penuh CRM & analitik',
-            'SEO Tingkat Lanjut & Schema markup',
-            'Email Hosting (5 Slot)',
-            'SLA Uptime 99.9%',
-            'Admin Panel & Database CMS',
-            'Prioritas Pemeliharaan 24/7',
+            'All benefit Starter',
+            'Hingga 15 halaman custom',
+            'Blog/Artikel (CMS)',
+            'SEO + Google Analytics',
+            'Google Maps embed + formulir',
+            'Integrasi Media Sosial',
+            'Garansi Revisi 5x',
+            'Support Maintenance 2 Bulan',
           ],
         },
         enterprise: {
-          desc: 'Sistem web performa ekstrem untuk kebutuhan integrasi mendalam dan infrastruktur khusus.',
+          name: 'Enterprise',
+          desc: 'Untuk skala besar dan korporat dengan kebutuhan fitur lengkap dan performa ekstrem.',
           features: [
-            'Halaman Tanpa Batas (Next.js/Edge)',
-            'Performa Kecepatan LCP < 0.5s',
-            'Integrasi Kustom Salesforce/SAP',
-            'SEO Enterprise & Lokalisasi',
-            'Email Hosting Korporat',
-            'SLA Uptime 99.99% (Dukungan prioritas)',
-            'Integrasi Headless CMS Tingkat Lanjut',
-            'Full Source Code & Dukungan Khusus 24/7',
+            'All benefit Pro',
+            'Hingga 45 halaman custom',
+            'Multi Bahasa',
+            'Admin Panel',
+            'Performance + SEO Audit',
+            'Source code',
+            'Garansi Revisi 10x',
+            'Support Maintenance 4 Bulan',
           ],
         },
       },
-      waTemplate: 'Halo Gradivus Code, saya tertarik memesan paket *{pkgName}* (kontrak Rp {pkgMonthly}/bulan x 6, total Rp {pkgPrice}). Mohon info kelanjutannya.',
+      waTemplate: 'Halo Gradivus Code, saya tertarik memesan paket *{pkgName}* (Rp {pkgPrice}). Mohon info kelanjutannya.',
+    },
+    portfolio: {
+      heading: 'Karya & Portofolio',
+      subtitle: 'Koleksi website dan desain visual terbaik yang telah kami kembangkan.',
+      filterAll: 'Semua',
+      filterWebsite: 'Website',
+      filterBranding: 'Desain & Branding',
+      emptyText: 'Belum ada portofolio untuk kategori ini.',
+      viewDemo: 'Lihat Demo Langsung',
+      closeModal: 'Tutup',
     },
     calculator: {
       heading: 'Kalkulator Biaya',
       subtitle: 'Pilih layanan kustom Anda dan lihat estimasi biaya secara real-time.',
-      step1: '1. Jenis Website',
+      step1: '1. Paket Website Dasar',
       step2: '2. Kebutuhan Branding',
       step3: '3. Fitur Tambahan (Add-ons)',
       estimateLabel: 'Estimasi Total',
       ctaWhatsapp: 'Pesan via WhatsApp',
-      disclaimer: '* Estimasi ini bersifat sementara. Rincian final akan ditentukan setelah sesi konsultasi gratis.',
+      disclaimer: '* Estimasi ini bersifat perkiraan. Rincian final akan ditentukan setelah sesi konsultasi gratis.',
       pricingLabels: {
         website: {
-          'landing-page': 'Landing Page (1 Halaman)',
-          'website-umkm': 'Website UMKM (3 Halaman)',
-          'katalog-interaktif': 'Katalog Interaktif',
+          starter: 'Paket Starter (Hingga 5 Halaman)',
+          pro: 'Paket Pro (Hingga 15 Halaman + CMS)',
+          enterprise: 'Paket Enterprise (Hingga 45 Halaman + Multi Bahasa)',
         },
         branding: {
-          'tidak-perlu': 'Tidak Perlu',
+          'tidak-perlu': 'Tidak Perlu Branding',
           'logo-saja': 'Desain Logo Saja',
           'branding-lengkap': 'Paket Branding Lengkap',
         },
         addons: {
-          'google-maps': 'Setup Google Maps',
-          'copywriting': 'Copywriting Premium',
-          'analytics': 'Integrasi Analytics',
+          multilingual: 'Dukungan Multi Bahasa Ekstra',
+          analytics: 'Setup Google Analytics & Pixel',
+          seoAudit: 'Audit SEO & Performance Mendalam',
         },
       },
-      waTemplate: 'Halo Gradivus Code, saya tertarik memesan jasa kustom:\n\n- *Website:* {website}\n- *Branding:* {branding}\n{addons}- *Estimasi Total:* *Rp {total}*\n\nMohon info lebih lanjut untuk konsultasi. Terima kasih!',
+      waTemplate: 'Halo Gradivus Code, saya tertarik memesan jasa kustom:\n\n- *Paket Website:* {website}\n- *Branding:* {branding}\n{addons}- *Estimasi Total:* *Rp {total}*\n\nMohon info lebih lanjut untuk konsultasi. Terima kasih!',
     },
     faq: {
       heading: 'Pertanyaan Umum',
@@ -272,49 +293,33 @@ export const DICTIONARIES: Record<string, Dictionary> = {
       items: [
         {
           question: 'Berapa lama proses pengerjaan website?',
-          answer: 'Proses pengerjaan berkisar antara 5 s/d 14 hari kerja tergantung kompleksitas fitur dan antrean proyek. Paket Rintisan biasanya selesai dalam 5 hari.',
+          answer: 'Proses pengerjaan berkisar antara 3 s/d 14 hari kerja tergantung paket yang dipilih. Paket Starter rata-rata selesai dalam 3-5 hari kerja.',
         },
         {
           question: 'Apakah harga di atas sudah termasuk domain dan hosting?',
-          answer: 'Ya! Semua paket sudah termasuk biaya domain (.com / .id) untuk tahun pertama dan hosting gratis selamanya di Vercel.',
+          answer: 'Ya! Semua paket sudah termasuk free domain (.com) dan hosting 1 tahun pertama.',
         },
         {
-          question: 'Apakah ada biaya bulanan yang harus dibayar?',
-          answer: 'Harga paket dengan kontrak 6 bulan sampai lunas — setelah itu tidak ada tagihan wajib lagi (bukan langganan seumur hidup). Hosting website-nya sendiri gratis selamanya di server cloud serverless Vercel. Anda hanya perlu membayar sewa domain tahunan (mulai Rp 120.000/tahun) langsung ke registrar.',
-        },
-        {
-          question: 'Apakah email hosting-nya gratis selamanya?',
-          answer: 'Email hosting termasuk gratis di tahun pertama. Setelah itu, Anda bisa lanjut berlangganan email hosting melalui kami secara opsional (mulai Rp 149.000/bulan untuk paket Startup, minimal kontrak 6 bulan), atau kelola sendiri pakai provider email lain dengan domain Anda — tanpa paksaan.',
-        },
-        {
-          question: 'Apakah saya bisa mengedit isi website sendiri?',
-          answer: 'Tentu saja! Kami menyediakan panduan admin tertulis dan video serta dashboard admin panel kustom bagi pemesan paket Tumbuh & Mapan untuk menambah portfolio.',
+          question: 'Apakah ada admin panel untuk mengedit isi website?',
+          answer: 'Ya! Paket Pro dilengkapi Blog/Artikel CMS dan Paket Enterprise dilengkapi Custom Admin Panel untuk mengelola konten dan portofolio.',
         },
         {
           question: 'Bagaimana alur pengerjaan dan pembayarannya?',
-          answer: 'Alurnya: Konsultasi gratis → DP 30-50% dari total paket → Proses Desain & Coding → Review & Revisi → sisa tagihan dengan kontrak 6 bulan → Website Live & Serah Terima penuh setelah lunas.',
-        },
-        {
-          question: 'Apa maksud "minimal kontrak 6 bulan" di harga paket?',
-          answer: 'Itu berlaku untuk kontrak harga paket, bukan langganan rutin. Begitu Anda memilih skema kontrak, Anda berkomitmen menyelesaikan seluruh 6 bulan pembayaran sampai lunas (tidak bisa berhenti di tengah jalan) — setelah itu tidak ada tagihan lagi. Ini terpisah dari "minimal kontrak 6 bulan" pada lanjutan email hosting opsional (mulai tahun kedua), yang hanya berlaku jika Anda memilih lanjut berlangganan email lewat kami.',
+          answer: 'Alurnya: Konsultasi kebutuhan gratis → DP 50% → Proses Desain & Development → Review & Revisi sesuai kuota garansi → Pelunasan → Website Live & Serah Terima.',
         },
         {
           question: 'Apakah website ini responsif dan cepat diakses dari HP?',
-          answer: 'Ya! Kami menggunakan framework Next.js 14+ dan Tailwind CSS untuk menjamin website memiliki LCP (Largest Contentful Paint) sangat cepat dan mobile-friendly.',
-        },
-        {
-          question: 'Bagaimana jika domain saya sudah lewat dari 1 tahun?',
-          answer: 'Untuk perpanjangan domain, biaya tahun berikutnya diserahkan langsung ke klien (mulai dari Rp 120.000/tahun). Kami akan membantu proses perpanjangannya gratis.',
+          answer: 'Pasti! Kami membangun website menggunakan teknologi Next.js modern yang sangat responsif di perangkat mobile/tablet dan memiliki skor PageSpeed tinggi.',
         },
         {
           question: 'Apakah Gradivus Code melayani jasa custom di luar paket?',
-          answer: 'Ya! Hubungi kami via formulir kontak atau WhatsApp untuk mendiskusikan kebutuhan kustom Anda (misal e-commerce, portal booking, dll).',
+          answer: 'Tentu saja! Hubungi kami melalui formulir kontak atau WhatsApp untuk konsultasi sistem kustom (web app, portal pemesanan, integrasi API, dll).',
         },
       ],
     },
     contact: {
       heading: 'Mulai Proyek Anda',
-      subtitle: 'Hubungi kami melalui form di bawah untuk konsultasi.',
+      subtitle: 'Hubungi kami melalui form di bawah untuk konsultasi gratis.',
       labelName: 'Nama Lengkap',
       labelBusiness: 'Nama Usaha / Brand',
       labelPackage: 'Pilih Paket Layanan',
@@ -333,9 +338,9 @@ export const DICTIONARIES: Record<string, Dictionary> = {
       errorPackage: 'Silakan pilih paket',
       optionUndecided: 'Belum Tahu / Kustom',
       packages: {
-        startup: 'Startup (mulai Rp 599.000/bulan)',
-        professional: 'Professional (mulai Rp 1.199.000/bulan)',
-        enterprise: 'Enterprise (mulai Rp 2.599.000/bulan)',
+        starter: 'Starter (Rp 900.000)',
+        pro: 'Pro (Rp 2.399.000)',
+        enterprise: 'Enterprise (Rp 4.699.000)',
       },
       waTemplate: 'Halo Gradivus Code!\n\nSaya *{name}* dari *{business}*.\nSaya tertarik memesan paket: *{pkg}*.\n{notes}\nMohon informasi lebih lanjut. Terima kasih!',
     },
@@ -347,7 +352,7 @@ export const DICTIONARIES: Record<string, Dictionary> = {
     footer: {
       quickLinks: 'Menu Cepat',
       contactUs: 'Hubungi Kami',
-      brandDesc: 'Solusi digital premium untuk UMKM Indonesia. Membuat website Anda cepat, estetis, dan profesional.',
+      brandDesc: 'Solusi digital premium untuk UMKM & Bisnis Go Global. Desain berkelas, performa super cepat, dan profesional.',
       madeWith: 'Dibuat dengan',
       copyright: '© 2026 Gradivus Code. All rights reserved.',
     },
@@ -408,153 +413,147 @@ export const DICTIONARIES: Record<string, Dictionary> = {
       ariaNav: 'Desktop navigation',
     },
     hero: {
-      titleBefore: 'Scale Up Your Business with ',
-      titleHighlight: 'Aesthetic',
-      titleAfter: ' & Super Fast Websites',
-      subtitle: 'Complete Landing Page + Branding package for Indonesian SMEs. Premium design, lightweight performance, 6-month contract from IDR 599,000/month.',
-      subtitleMobile: 'Premium design, fast performance, 6-month contract from IDR 599,000/month.',
+      titleBefore: 'Build Global-Ready ',
+      titleHighlight: 'Websites',
+      titleAfter: ' for Your Business',
+      subtitle: 'Enhance your international credibility and capture global markets with aesthetic, lightning-fast websites.',
+      subtitleMobile: 'Enhance international credibility and capture global markets.',
       ctaPrice: 'View Packages',
       ctaConsult: 'Free Consultation',
       statProject: 'Projects Completed',
       statSatisfaction: 'Client Satisfaction',
       statSpeed: 'PageSpeed Score',
-      waTemplate: 'Hello Gradivus Code, I am interested in consulting about B2B company website development',
+      waTemplate: 'Hello Gradivus Code, I am interested in consulting about Go Global website development.',
     },
     nav: {
       services: 'Services',
+      portfolio: 'Portfolio',
       calculator: 'Pricing',
       faq: 'FAQ',
       contact: 'Contact',
       cta: 'Free Consult',
     },
     services: {
-      heading: 'Services & Pricing',
-      subtitle: 'Choose the package that fits your business needs and scale. All packages include free website hosting forever.',
-      badgePopular: 'Popular',
-      ctaOrder: 'Order Package',
-      installmentLabel: '6-Month Contract',
-      minContractNote: '* Minimum 6-month contract',
-      emailContinuationNote: 'Email hosting free for the first year. Optional continuation from {price}/month after that.',
+      heading: 'Services & Pricing Packages',
+      subtitle: 'Enhance your business credibility globally & reach international markets.',
+      badgePopular: 'Recommended',
+      ctaOrder: 'Choose Package',
       packages: {
-        startup: {
-          desc: 'For new businesses/early-stage SMEs needing a fast, professional online presence.',
+        starter: {
+          name: 'Starter',
+          desc: 'For early startups seeking a fast and reliable professional online presence.',
           features: [
-            '1 Page Landing Page (Clean Design)',
-            'LCP Speed Performance < 1.2s',
-            'HubSpot/WhatsApp Integration',
-            'Standard SEO Setup',
-            'Email Hosting (2 Slots)',
-            'SLA Uptime Guarantee',
-            'Custom Database & Admin Panel',
-            '24/7 Priority Maintenance',
+            'Free domain .com + hosting 1 Year',
+            'Up to 5 custom pages (Home, About, Service, Contact, Gallery/Catalog)',
+            'Premium Design',
+            'Basic On-Page SEO',
+            'Mobile + Tablet Responsive',
+            '3x Revision Guarantee',
+            '1 Month Maintenance Support',
           ],
         },
-        professional: {
-          desc: 'Ideal package for growing businesses requiring high conversion & data integration.',
+        pro: {
+          name: 'Pro',
+          desc: 'For growing businesses requiring high conversions and maximum exposure.',
           features: [
-            '5-8 Pages (Next.js Multi-page)',
-            'LCP Speed Performance < 0.8s',
-            'Full CRM & analytics integration',
-            'Advanced SEO & Schema markup',
-            'Email Hosting (5 Slots)',
-            'SLA Uptime 99.9%',
-            'Admin Panel & Database CMS',
-            '24/7 Priority Maintenance',
+            'All benefit Starter',
+            'Up to 15 custom pages',
+            'Blog/Articles (CMS)',
+            'SEO + Google Analytics',
+            'Google Maps embed + form',
+            'Social Media Integration',
+            '5x Revision Guarantee',
+            '2 Months Maintenance Support',
           ],
         },
         enterprise: {
-          desc: 'Extreme performance web systems for deep integration needs and custom infrastructure.',
+          name: 'Enterprise',
+          desc: 'For large scale enterprises requiring complete custom features and extreme performance.',
           features: [
-            'Unlimited Pages (Next.js/Edge)',
-            'LCP Speed Performance < 0.5s',
-            'Custom Salesforce/SAP Integrations',
-            'Enterprise SEO & Localization',
-            'Corporate Email Hosting',
-            'SLA Uptime 99.99% (Priority support)',
-            'Advanced Headless CMS Integration',
-            'Full Source Code & 24/7 Dedicated Support',
+            'All benefit Pro',
+            'Up to 45 custom pages',
+            'Multi Language',
+            'Admin Panel',
+            'Performance + SEO Audit',
+            'Source code',
+            '10x Revision Guarantee',
+            '4 Months Maintenance Support',
           ],
         },
       },
-      waTemplate: 'Hello Gradivus Code, I am interested in ordering the *{pkgName}* package (6-month contract, IDR {pkgMonthly}/month, total IDR {pkgPrice}). Please let me know the next steps.',
+      waTemplate: 'Hello Gradivus Code, I am interested in ordering the *{pkgName}* package (IDR {pkgPrice}). Please provide details.',
+    },
+    portfolio: {
+      heading: 'Our Work & Portfolio',
+      subtitle: 'A showcase of premier websites and visual identities we have crafted.',
+      filterAll: 'All',
+      filterWebsite: 'Website',
+      filterBranding: 'Design & Branding',
+      emptyText: 'No portfolio items found for this category.',
+      viewDemo: 'View Live Demo',
+      closeModal: 'Close',
     },
     calculator: {
       heading: 'Cost Calculator',
-      subtitle: 'Select your custom services and see the estimated cost in real-time.',
-      step1: '1. Website Type',
+      subtitle: 'Select your customized services and view real-time estimates.',
+      step1: '1. Base Website Package',
       step2: '2. Branding Needs',
-      step3: '3. Add-ons',
+      step3: '3. Additional Features (Add-ons)',
       estimateLabel: 'Estimated Total',
       ctaWhatsapp: 'Order via WhatsApp',
-      disclaimer: '* This estimate is tentative. Final details will be determined after a free consultation session.',
+      disclaimer: '* This estimate is an approximation. The final invoice will be settled after the free consultation.',
       pricingLabels: {
         website: {
-          'landing-page': 'Landing Page (1 Page)',
-          'website-umkm': 'SME Website (3 Pages)',
-          'katalog-interaktif': 'Interactive Catalog',
+          starter: 'Starter Package (Up to 5 Pages)',
+          pro: 'Pro Package (Up to 15 Pages + CMS)',
+          enterprise: 'Enterprise Package (Up to 45 Pages + Multi-Language)',
         },
         branding: {
-          'tidak-perlu': 'None',
+          'tidak-perlu': 'No Branding Needed',
           'logo-saja': 'Logo Design Only',
-          'branding-lengkap': 'Complete Branding Package',
+          'branding-lengkap': 'Complete Branding Suite',
         },
         addons: {
-          'google-maps': 'Google Maps Setup',
-          'copywriting': 'Premium Copywriting',
-          'analytics': 'Analytics Integration',
+          multilingual: 'Extra Multi-Language Setup',
+          analytics: 'Google Analytics & Pixel Integration',
+          seoAudit: 'In-Depth SEO & Performance Audit',
         },
       },
-      waTemplate: 'Hello Gradivus Code, I am interested in ordering custom services:\n\n- *Website:* {website}\n- *Branding:* {branding}\n{addons}- *Estimated Total:* *IDR {total}*\n\nPlease provide more information for consultation. Thank you!',
+      waTemplate: 'Hello Gradivus Code, I am interested in ordering custom services:\n\n- *Website Package:* {website}\n- *Branding:* {branding}\n{addons}- *Estimated Total:* *IDR {total}*\n\nPlease advise on the next consultation steps. Thank you!',
     },
     faq: {
-      heading: 'FAQ',
-      subtitle: 'Quick answers to frequently asked questions.',
+      heading: 'Frequently Asked Questions',
+      subtitle: 'Clear answers to common questions asked by our clients.',
       items: [
         {
-          question: 'How long does it take to build a website?',
-          answer: 'The process takes between 5 to 14 business days depending on feature complexity and project queue. The Starter package usually completes in 5 days.',
+          question: 'How long does website development take?',
+          answer: 'Development typically ranges from 3 to 14 business days depending on the chosen package. The Starter package is completed in 3-5 business days on average.',
         },
         {
-          question: 'Does the price include domain and hosting?',
-          answer: 'Yes! All packages include domain (.com / .id) for the first year and free hosting forever on Vercel.',
+          question: 'Are domain and hosting included in the price?',
+          answer: 'Yes! All packages include a free .com domain and 1 year of hosting.',
         },
         {
-          question: 'Are there any monthly fees?',
-          answer: 'Package prices use a 6-month contract plan — after that, there\'s no more required billing (this is not a lifetime subscription). Website hosting itself stays free forever on Vercel\'s serverless cloud. You only need to pay for annual domain renewal (starting from IDR 120,000/year) directly to the registrar.',
-        },
-        {
-          question: 'Is email hosting free forever?',
-          answer: 'Email hosting is free for the first year. After that, you can optionally continue email hosting through us (starting from IDR 149,000/month for the Startup package, minimum 6-month contract), or manage it yourself with another email provider using your own domain — no obligation.',
-        },
-        {
-          question: 'Can I edit the website content myself?',
-          answer: 'Of course! We provide written and video admin guides, plus a custom admin panel for Growth & Established package subscribers to manage their portfolio.',
+          question: 'Can I edit the website content myself via an Admin Panel?',
+          answer: 'Yes! The Pro package includes Blog/Article CMS, and the Enterprise package includes a Custom Admin Panel to manage your content and portfolio.',
         },
         {
           question: 'What is the workflow and payment process?',
-          answer: 'The flow: Free consultation → 30-50% down payment of the total package → Design & Coding → Review & Revision → remaining balance paid over a 6-month contract → Website goes live & full handover once paid off.',
+          answer: 'Workflow: Free requirement consultation → 50% down payment → Design & Development → Review & Revisions → Final balance payment → Live handover.',
         },
         {
-          question: 'What does "minimum 6-month contract" mean on the package price?',
-          answer: 'That refers to the package\'s contract plan, not a recurring subscription. Once you choose the contract option, you commit to completing all 6 monthly payments until it\'s paid off (it can\'t be stopped partway) — after that there\'s no more billing. This is separate from the "minimum 6-month contract" on the optional email hosting continuation (starting year two), which only applies if you choose to continue email hosting through us.',
+          question: 'Is the website responsive and fast on mobile devices?',
+          answer: 'Absolutely! We use modern Next.js architecture to guarantee high mobile responsiveness and optimal PageSpeed scores.',
         },
         {
-          question: 'Is the website responsive and fast on mobile?',
-          answer: 'Yes! We use the Next.js 14+ framework and Tailwind CSS to ensure very fast LCP (Largest Contentful Paint) and mobile-friendly websites.',
-        },
-        {
-          question: 'What happens after the first year of domain?',
-          answer: 'Domain renewal fees for subsequent years are handled directly by the client (starting from IDR 120,000/year). We will help with the renewal process for free.',
-        },
-        {
-          question: 'Does Gradivus Code offer custom services outside packages?',
-          answer: 'Yes! Contact us via the contact form or WhatsApp to discuss your custom needs (e.g., e-commerce, booking portal, etc.).',
+          question: 'Do you offer custom web solutions outside packages?',
+          answer: 'Yes! Reach out via WhatsApp or the contact form to discuss custom portals, booking systems, or integrations.',
         },
       ],
     },
     contact: {
       heading: 'Start Your Project',
-      subtitle: 'Contact us through the form below for a consultation.',
+      subtitle: 'Contact us through the form below for a free consultation.',
       labelName: 'Full Name',
       labelBusiness: 'Business / Brand Name',
       labelPackage: 'Select Service Package',
@@ -573,9 +572,9 @@ export const DICTIONARIES: Record<string, Dictionary> = {
       errorPackage: 'Please select a package',
       optionUndecided: 'Undecided / Custom',
       packages: {
-        startup: 'Startup (from IDR 599,000/month)',
-        professional: 'Professional (from IDR 1,199,000/month)',
-        enterprise: 'Enterprise (from IDR 2,599,000/month)',
+        starter: 'Starter (IDR 900,000)',
+        pro: 'Pro (IDR 2,399,000)',
+        enterprise: 'Enterprise (IDR 4,699,000)',
       },
       waTemplate: 'Hello Gradivus Code!\n\nI am *{name}* from *{business}*.\nI am interested in ordering package: *{pkg}*.\n{notes}\nPlease provide more information. Thank you!',
     },
@@ -587,7 +586,7 @@ export const DICTIONARIES: Record<string, Dictionary> = {
     footer: {
       quickLinks: 'Quick Links',
       contactUs: 'Contact Us',
-      brandDesc: 'Premium digital solutions for Indonesian SMEs. Making your website fast, aesthetic, and professional.',
+      brandDesc: 'Premium digital solutions for Businesses Going Global. Elegant design, blazing performance, and utmost professionalism.',
       madeWith: 'Made with',
       copyright: '© 2026 Gradivus Code. All rights reserved.',
     },
@@ -643,3 +642,5 @@ export const DICTIONARIES: Record<string, Dictionary> = {
     },
   },
 };
+
+export const DICTIONARIES = dictionaries;

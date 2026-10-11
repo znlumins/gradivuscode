@@ -153,8 +153,8 @@ export default function ContactForm() {
                   <div className="absolute top-[calc(100%+8px)] left-0 right-0 z-50 rounded-xl bg-bg-card border border-border p-1.5 shadow-card-hover space-y-1">
                     {[
                       t.contact.placeholderPackage,
-                      t.contact.packages.startup,
-                      t.contact.packages.professional,
+                      t.contact.packages.starter,
+                      t.contact.packages.pro,
                       t.contact.packages.enterprise,
                       t.contact.optionUndecided
                     ].map((option, index) => {
